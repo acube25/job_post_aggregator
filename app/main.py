@@ -4,7 +4,7 @@ from app.utils.db import get_db
 
 from app.models.user import Base
 from app.utils.db import engine
-from app.routers import auth
+from app.routers import auth, user
 
 Base.metadata.create_all(bind = engine)
 app = FastAPI()
@@ -17,4 +17,6 @@ def read_root():
 def test_database(db: Session = Depends(get_db)):
     return {"message": "database connection successful!"}
 
+
 app.include_router(auth.router)
+app.include_router(user.router)

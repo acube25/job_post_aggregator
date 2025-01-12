@@ -7,7 +7,10 @@ from app.utils.security import get_password_hash, verify_pasword
 from app.schemas.user import UserCreate, UserLogin
 from app.utils.jwt import create_access_token
 
-router = APIRouter()
+router = APIRouter(
+    prefix = "/auth",
+    tags = ["Authentication"]
+)
 
 @router.post("/register")
 def register_user(user_data: UserCreate, db: Session = Depends(get_db)):
